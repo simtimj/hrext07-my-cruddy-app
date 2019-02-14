@@ -1,0 +1,8 @@
+.container-data {
+	display: flex;
+	flex-direction: column;
+}
+
+.container-data {
+	margin-top: 10px;
+}
