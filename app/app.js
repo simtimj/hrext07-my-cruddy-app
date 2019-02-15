@@ -22,16 +22,12 @@ $(document).ready(function(){
 
     // if no length
     if (start !== "" && end !== "" && length === "") {
-      console.log("in no length")
       length = findLength(start,end);
-      console.log(length);
     }
 
     // if no end
-    console.log(end);
     if (start !== "" && end === "" && length !== "") {
       end = findEnd(start,length);
-      console.log(end)
     }
 
     // if no start
@@ -71,7 +67,7 @@ $(document).ready(function(){
 
 
   // update db
-    // need to expand when  more than 1 item is added
+    
 
 
 
@@ -96,7 +92,13 @@ $(document).ready(function(){
   var show = function() {
     if (localStorage.length !== 0) {
       for (var key in localStorage) {
-        console.log(localStorage);
+
+
+        // if (key.split(" ").length > 0) {
+        //   var renamedKey = key.split(" ").join("_");
+        // } else {
+        //   var renamedKey = key;
+        // }
 
         if (key === "length") {
           break;
@@ -121,12 +123,14 @@ $(document).ready(function(){
        }
     } 
   }
-  show();
+  if (localStorage.length !== 0) {
+    show();
+  }
 });
 
 var timeInMins = function(time) {
   var split = time.split(":");
-  var hrs = parseInt(split[0]) % 12;
+  var hrs = parseInt(split[0]) % 13;
   var mins = parseInt(split[1]);
 
   return (hrs * 60) + mins;
@@ -150,9 +154,18 @@ var realTime = function(mins) {
 }
 
 var findLength = function(start, end) {
-  var startInMins = timeInMins(start);
-  var endInMins = timeInMins(end);
-  var dif = endInMins - startInMins
+
+  if (timeInMins(start) < timeInMins(end)) {
+    var startInMins = timeInMins(start);
+    var endInMins = timeInMins(end);
+    var dif = endInMins - startInMins
+  } else {
+    var startInMins = timeInMins(start);
+    var endInMins = timeInMins(end) + 720;
+    var dif = endInMins - startInMins
+  }
+
+  console.log("start",startInMins, "end", endInMins)
   return realTime(dif);
 }
 //findLength("2:00", "5:30");
