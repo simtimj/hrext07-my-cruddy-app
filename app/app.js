@@ -20,6 +20,12 @@ $(document).ready(function(){
     // var endKey = title + "End";
     // var lengthKey = title + "Length";
 
+    for (var key in localStorage) {
+      if (key === title) {
+        
+      }
+    }
+
     // if no length
     if (start !== "" && end !== "" && length === "") {
       console.log("in no length")
@@ -73,12 +79,14 @@ $(document).ready(function(){
   // update db
     // need to expand when  more than 1 item is added
 
-  // delete item
-  // $('.container-data').on('click', '.display-data-item', function(e){
-  //   var keyData = e.currentTarget.dataset.keyvalue;
-  //   localStorage.removeItem(keyData);
-  //   $('.container-data').text('');
-  // });
+  //delete row
+  $(".btn-delete").click(function(){
+    $("table tbody").find('input[name="record"]').each(function(){
+      if($(this).is(":checked")){
+        $(this).parents("tr").remove();
+      }
+    });
+  });
 
   // delete all?
   $('.btn-clear').click(function(){
@@ -96,7 +104,7 @@ $(document).ready(function(){
           break;
         }
 
-        $(".table-content").append(`<tr class="${key}-row"><tr>`)    //ex: class="Breakfast-row"
+        $(".table-content").append(`<tr class="${key}-row" id="row"><tr>`)    //ex: class="Breakfast-row"
         //var values = localStorage.key.val()
         var splitValues = localStorage.getItem(key).split("|");
         var storedTitle = splitValues[0];
@@ -107,6 +115,7 @@ $(document).ready(function(){
         // $('.container-data').append(`<div class="display-data-item" data-keyValue= ${storedTitle}>${displayText}</div>`);
 
         //will append, within tbody, a tr, with 4 tds for each cell
+        $(`.${storedTitle}-row`).append('<td><input type="checkbox" name="record"></td>')
         $(`.${storedTitle}-row`).append(`<td>${storedTitle}</td>`)
         $(`.${storedTitle}-row`).append(`<td>${storedStart}</td>`)
         $(`.${storedTitle}-row`).append(`<td>${storedEnd}</td>`)

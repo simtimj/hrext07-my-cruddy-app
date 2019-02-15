@@ -24,6 +24,12 @@
           "bAutoWidth": false });
       });
   </script>
+  <script>
+    $(".table-content").on("click", ".btn-delete", function() {
+      $(this).closest("tr").remove();
+    });
+
+  </script>
 
   <script src="app/app.js"></script>
   <link rel="stylesheet" href="css/style.css">
@@ -40,8 +46,8 @@
     <input type="text" class="length-input" placeholder="Length">
 
     <button class="btn-add">Add to Schedule</button>
-    <button class="btn-update">Update</button>
     <button class="btn-delete">Delete</button>
+    <button class="btn-update">Update</button>
     <button class="btn-clear">Clear All</button>
   </div>
   <div class="container-data"></div>
@@ -50,6 +56,7 @@
       <table id="table_id" class="display">
     <thead>
         <tr>
+            <th>Checkbox</th>
             <th>Title</th>
             <th>Start</th>
             <th>End</th>
