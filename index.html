@@ -8,8 +8,23 @@
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+  <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('#table_id').dataTable({
+          "bPaginate": false,
+          "bLengthChange": false,
+          "bFilter": true,
+          "bInfo": false,
+          "searching": false, 
+          "bAutoWidth": false });
+      });
+  </script>
+
   <script src="app/app.js"></script>
   <link rel="stylesheet" href="css/style.css">
 
@@ -19,32 +34,32 @@
 <div class="container-main">
   <header>My Cruddy Schedule App</header>
   <div class="container-form">
-    <input type="text" class="input-key" placeholder="enter key">
-    <input type="text" class="input-value" placeholder="enter value">
-    <button class="btn-add">Submit</button>
+    <input type="text" class="title-input" placeholder="Title">
+    <input type="text" class="start-input" placeholder="Start Time">
+    <input type="text" class="end-input" placeholder="End Time">
+    <input type="text" class="length-input" placeholder="Length">
+
+    <button class="btn-add">Add to Schedule</button>
     <button class="btn-update">Update</button>
     <button class="btn-delete">Delete</button>
     <button class="btn-clear">Clear All</button>
   </div>
   <div class="container-data"></div>
-  <table class="table">
-    <thread>
-      <tr>
-        <th>Start</th>
-        <th>End</th>
-      </tr>
-    </thread>
-    <tbody>
-      <tr>
-        <td>Row 1 Data 1</td>
-        <td>Row 1 Data 2</td>
-      </tr>
-      <tr>
-        <td>Row 2 Data 1</td>
-        <td>Row 2 Data 2</td>
-      </tr>
+  <div class="table-div">
+    <table class="table">
+      <table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Length</th>
+        </tr>
+    </thead>
+    <tbody class="table-content">
     </tbody>
-  </table>
+</table>
+  </div>
 </div>
 
 </body>
