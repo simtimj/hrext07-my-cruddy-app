@@ -20,12 +20,6 @@ $(document).ready(function(){
     // var endKey = title + "End";
     // var lengthKey = title + "Length";
 
-    for (var key in localStorage) {
-      if (key === title) {
-        
-      }
-    }
-
     // if no length
     if (start !== "" && end !== "" && length === "") {
       console.log("in no length")
@@ -79,6 +73,9 @@ $(document).ready(function(){
   // update db
     // need to expand when  more than 1 item is added
 
+
+
+
   //delete row
   $(".btn-delete").click(function(){
     $("table tbody").find('input[name="record"]').each(function(){
@@ -99,6 +96,7 @@ $(document).ready(function(){
   var show = function() {
     if (localStorage.length !== 0) {
       for (var key in localStorage) {
+        console.log(localStorage);
 
         if (key === "length") {
           break;
